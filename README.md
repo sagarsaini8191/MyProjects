@@ -12,7 +12,7 @@ This is a **Spring Boot-based Microservices Project** for managing hotel booking
 | **UserService**   | Manages user profiles and associated data        |
 | **HotelService**  | Manages hotel info, details, CRUD operations     |
 | **RatingService** | Manages user ratings for hotels                  |
-| **ServiceRegistry** | Eureka Server for service discovery           |
+| **ServiceRegistry** | Eureka Server for service discovery            |
 
 ---
 
@@ -25,24 +25,31 @@ This is a **Spring Boot-based Microservices Project** for managing hotel booking
 - Maven
 - MySQL
 - Lombok
-- MapStruct (if used)
-- Swagger (if used)
+- MapStruct 
+- Swagger 
 - IntelliJ IDEA
 - Api GateWay
+- Feign Client
+  
 
 ---
 
 ## 🔧 Project Architecture
 
-```text
-                      +--------------------+
-                      |    Api Gateway     |
-                      +---------+----------+
-                                |
-        -------------------------------------------------
-        |                   |                    |       |
-+---------------+  +----------------+  +----------------+  +--------------------+
-| User Service  |  | Hotel Service  |  | Rating Service |  | Service Registry   |
-+---------------+  +----------------+  +----------------+  +--------------------+
-        |                   |                    |
-        -----------> MySQL Databases (per service)
+                         +--------------------+
+                         |    API Gateway     |
+                         +---------+----------+
+                                   |
+        -----------------------------------------------------
+        |                     |                     |        |
++----------------+  +------------------+  +----------------+  +--------------------+
+|  User Service  |  |  Hotel Service   |  |  Rating Service|  |  Service Registry  |
++-------+--------+  +--------+---------+  +--------+-------+  +--------------------+
+        |                    |                     |
+        |                    |                     |
+        v                    v                     v
++---------------+   +------------------+   +------------------+
+| user_service  |   | hotel_service_db |   | rating_service_db|
+|    MySQL DB   |   |     MySQL DB     |   |     MySQL DB     |
++---------------+   +------------------+   +------------------+
+
